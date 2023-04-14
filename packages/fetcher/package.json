@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/fetcher",
-    "version": "0.1.11",
+    "version": "0.2.0",
     "description": "Fetcher",
     "license": "MIT",
     "main": "lib/index.js",
@@ -20,7 +20,7 @@
         "test": "../../node_modules/.bin/jest -c ../../jest.config.js --rootDir=`pwd`"
     },
     "dependencies": {
-        "@genstackio/replace": "^0.1.2",
+        "@genstackio/replace": "^0.2.0",
         "@ohoareau/aws": "^0.1.8",
         "node-fetch": "^2.6.5"
     },
