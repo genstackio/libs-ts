@@ -1,4 +1,4 @@
-name: Deploy to Env
+name: Push to Main Branch
 
 on:
   push:
@@ -17,13 +17,6 @@ jobs:
         with:
             secrets: ${{toJson(secrets)}}
             branch: ${{github.base_ref}}
-
-      - name: Prepare env vars from forced env
-        uses: ohoareau/actions/env-vars-from-env@master
-        with:
-            secrets: ${{toJson(secrets)}}
-            env: dev
-
 
       - name: Prepare Node.js (16.x)
         uses: actions/setup-node@v1
@@ -63,18 +56,6 @@ jobs:
       - name: Test
         shell: 'script -q -e -c "bash {0}"'
         run: make test
-        env:
-          FORCE_COLOR: 3
-          CI: true
-      - name: Deploy
-        shell: 'script -q -e -c "bash {0}"'
-        run: make deploy env=${{env.env}}
-        env:
-          FORCE_COLOR: 3
-          CI: true
-      - name: Migrate
-        shell: 'script -q -e -c "bash {0}"'
-        run: make migrate env=${{env.env}}
         env:
           FORCE_COLOR: 3
           CI: true

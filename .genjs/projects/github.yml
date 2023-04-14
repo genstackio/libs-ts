@@ -10,5 +10,5 @@ vars:
   forced_env: dev
   github:
     workflows:
-      deploy-to-forced-env: true
+      push-to-main-branch: true
       push-to-feature-branch: true
