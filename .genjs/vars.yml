@@ -1,0 +1,10 @@
+author: {name: Olivier Hoareau, email: oha+oss@greenberets.io}
+company: genstackio
+project_prefix: genstackio
+project_name: libs-ts
+project_description: GenStackIO's Typescript Libraries
+project_git_url: git@github.com:genstackio/libs-ts.git
+npm_scope: genstackio
+scm: github
+license: MIT
+node_version: 16.17.0

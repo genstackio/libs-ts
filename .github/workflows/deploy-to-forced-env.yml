@@ -1,0 +1,80 @@
+name: Deploy to Env
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Prepare Environment Variables
+        uses: ohoareau/actions/branch-to-env@master
+        with:
+            secrets: ${{toJson(secrets)}}
+            branch: ${{github.base_ref}}
+
+      - name: Prepare env vars from forced env
+        uses: ohoareau/actions/env-vars-from-env@master
+        with:
+            secrets: ${{toJson(secrets)}}
+            env: dev
+
+
+      - name: Prepare Node.js (16.x)
+        uses: actions/setup-node@v1
+        with:
+            node-version: 16.x
+
+      - name: Prepare NPM Registry identity
+        uses: ohoareau/actions/npmrc-scope-authtoken-add@master
+        with:
+            scope: genstackio
+            token: ${{secrets.CUSTOM_NPM_TOKEN}}
+            registry: registry.npmjs.org
+
+
+
+
+      - name: Prepare AWS profile
+        uses: ohoareau/actions/aws-account-profile-add@master
+        with:
+          name: default
+          aki: ${{secrets.AWS_DEPLOY_ACCOUNT_ACCESS_KEY_ID}}
+          sak: ${{secrets.AWS_DEPLOY_ACCOUNT_SECRET_ACCESS_KEY}}
+
+      - name: Prepare AWS assume-role
+        uses: ohoareau/actions/aws-role-profile-add@master
+        with:
+          name: genstackio-libs-ts-${{env.env}}
+          source: default
+          role: ${{env.AWS_DEPLOY_ACCOUNT_ROLE_ARN}}
+
+      - name: Install
+        shell: 'script -q -e -c "bash {0}"'
+        run: make install
+        env:
+          FORCE_COLOR: 3
+          CI: true
+      - name: Test
+        shell: 'script -q -e -c "bash {0}"'
+        run: make test
+        env:
+          FORCE_COLOR: 3
+          CI: true
+      - name: Deploy
+        shell: 'script -q -e -c "bash {0}"'
+        run: make deploy env=${{env.env}}
+        env:
+          FORCE_COLOR: 3
+          CI: true
+      - name: Migrate
+        shell: 'script -q -e -c "bash {0}"'
+        run: make migrate env=${{env.env}}
+        env:
+          FORCE_COLOR: 3
+          CI: true

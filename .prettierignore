@@ -1,0 +1,5 @@
+packages/*/templates
+packages/*/assets
+packages/*/lib
+coverage
+packages/*/coverage

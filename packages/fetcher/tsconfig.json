@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "composite": true,
+    "lib": ["dom"]
+  },
+  "include": ["./src"],
+  "references": [
+    {"path": "../replace"}
+  ]
+}

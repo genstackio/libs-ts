@@ -1,0 +1,15 @@
+type: monorepo-js-libs
+
+vars:
+  npm_client: yarn
+  postcss: true
+  storybooks: true
+  svg_components: true
+  makefile:
+    deployable_storybooks: true
+    generate_target: true
+    targets:
+      package-format: yarn eslint 'packages/$(p)/**/*.{js,ts,tsx}' --quiet --fix
+      format: yarn eslint '*/**/*.{js,ts,tsx}' --fix
+  readme:
+    name: libs-js

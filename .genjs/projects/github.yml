@@ -1,0 +1,14 @@
+type: cicd-github
+
+name: .github
+description: CI/CD pipeline scripts
+
+vars:
+  node_support: true
+  aws_support: true
+  node_version_constraint: 16.x
+  forced_env: dev
+  github:
+    workflows:
+      deploy-to-forced-env: true
+      push-to-feature-branch: true
