@@ -3,7 +3,7 @@ import {retry_context} from "../types";
 
 export class ExponentialBackoffRetrier<T = any> extends AbstractRetrier<T> {
     async call(fn: (context: retry_context) => Promise<T>, options?: Record<string, any>): Promise<T> {
-        const timeframe = 100;
+        const timeframes = [50, 100, 150, 200, 250];
         const maxRetries = 6;
         let r: T|undefined = undefined;
         let retries = 0;
@@ -12,7 +12,7 @@ export class ExponentialBackoffRetrier<T = any> extends AbstractRetrier<T> {
         let retry = true;
         const startTime = new Date().valueOf();
         do {
-            delay = (Math.pow(2, retries) - 1) * timeframe;
+            delay = (Math.pow(2, retries) - 1) * timeframes[Math.round(Math.random() * (timeframes.length - 1))];
             await this.wait(delay);
             r = undefined;
             e = undefined;
