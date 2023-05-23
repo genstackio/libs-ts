@@ -1,4 +1,4 @@
-import {retry_context, IRetrier} from "./types";
+import { retry_context, IRetrier } from './types';
 
 export abstract class AbstractRetrier<T = any> implements IRetrier<T> {
     abstract call(fn: (context: retry_context) => Promise<T>): Promise<T>;

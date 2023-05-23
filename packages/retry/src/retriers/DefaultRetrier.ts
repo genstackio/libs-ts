@@ -1,6 +1,5 @@
-import ExponentialBackoffRetrier from "./ExponentialBackoffRetrier";
+import ExponentialBackoffRetrier from './ExponentialBackoffRetrier';
 
-export class DefaultRetrier extends ExponentialBackoffRetrier {
-}
+export class DefaultRetrier extends ExponentialBackoffRetrier {}
 
 export default DefaultRetrier;
