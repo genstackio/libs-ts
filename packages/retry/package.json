@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/retry",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Retry Helper",
     "license": "MIT",
     "main": "lib/index.js",

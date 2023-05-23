@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/date",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Date Helper",
     "license": "MIT",
     "main": "lib/index.js",
@@ -24,8 +24,8 @@
         "test": "../../node_modules/.bin/jest -c ../../jest.config.js --rootDir=`pwd`"
     },
     "dependencies": {
-        "@genstackio/defaults": "^0.1.0",
-        "@genstackio/locale": "^0.1.0"
+        "@genstackio/defaults": "^0.1.1",
+        "@genstackio/locale": "^0.1.1"
     },
     "devDependencies": {
         "@babel/core": "^7.18.10",
