@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/findall",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "FindAll Helper",
     "license": "MIT",
     "main": "lib/index.js",
