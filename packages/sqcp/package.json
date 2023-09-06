@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/sqcp",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Search Query Common Params helper",
     "license": "MIT",
     "main": "lib/index.js",
