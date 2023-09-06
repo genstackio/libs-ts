@@ -1,4 +1,8 @@
-export async function findAllAndIndexBy<T = any, U = T>(field: string, fetcher: Function, mapper?: (x: T, index: number) => U) {
+export async function findAllAndIndexBy<T = any, U = T>(
+    field: string,
+    fetcher: Function,
+    mapper?: (x: T, index: number) => U,
+) {
     let cursor: any = undefined;
     const items: Record<string, T> = {};
     do {
