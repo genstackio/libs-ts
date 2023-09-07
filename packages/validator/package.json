@@ -1,7 +1,7 @@
 {
-    "name": "@genstackio/sqcp",
-    "version": "0.1.2",
-    "description": "Search Query Common Params helper",
+    "name": "@genstackio/validator",
+    "version": "0.0.0",
+    "description": "Validator Helper",
     "license": "MIT",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
@@ -14,7 +14,8 @@
     ],
     "repository": {
         "type": "git",
-        "url": "ssh://git@github.com/genstackio/libs-ts.git"
+        "url": "ssh://git@github.com/genstackio/libs-ts.git",
+        "directory": "packages/validator"
     },
     "publishConfig": {
         "access": "public"
@@ -22,9 +23,6 @@
     "scripts": {
         "build": "tsc",
         "test": "../../node_modules/.bin/jest -c ../../jest.config.js --rootDir=`pwd`"
-    },
-    "dependencies": {
-        "@genstackio/validator": "^0"
     },
     "devDependencies": {
         "@babel/core": "^7.18.10",

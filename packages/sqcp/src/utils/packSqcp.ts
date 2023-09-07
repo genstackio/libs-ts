@@ -1,5 +1,6 @@
 import { sqcp_data } from '../types';
 import mappings from '../mappings';
+import buildValue from './buildValue';
 
 function packSqcp(d: sqcp_data | undefined, mappingName = 'standard', withExtras = true) {
     if (!d) return '';
@@ -15,7 +16,10 @@ function packSqcp(d: sqcp_data | undefined, mappingName = 'standard', withExtras
                 return acc;
             }
             const def = m[a];
-            acc[def.key] = buildValue(def.type, b);
+            const vv = buildValue(def.type, b);
+            if (undefined !== vv) {
+                acc[def.key] = vv;
+            }
             return acc;
         }, {} as Record<string, string>),
     ).map(([k, v]) => {
@@ -27,14 +31,4 @@ function packSqcp(d: sqcp_data | undefined, mappingName = 'standard', withExtras
     return parts.join('&');
 }
 
-function buildValue(type: string, raw: unknown) {
-    switch (type) {
-        case 'string':
-            return String(raw);
-        case 'integer':
-            return String(parseInt(String(Number(raw))));
-        default:
-            return String(raw);
-    }
-}
 export default packSqcp;

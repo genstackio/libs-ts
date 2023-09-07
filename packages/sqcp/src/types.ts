@@ -6,5 +6,5 @@ export type sqcp_mapping = Record<string, sqcp_mapping_definition>;
 
 export type sqcp_mapping_definition = {
     key: string;
-    type: 'string' | 'integer' | 'float';
+    type: string;
 };

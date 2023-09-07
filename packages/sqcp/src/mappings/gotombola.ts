@@ -1,6 +1,6 @@
 import { sqcp_mapping } from '../types';
-import identity from './standard';
-import utm from './standard';
+import identity from './identity';
+import utm from './utm';
 import owner from './owner';
 
 const m: sqcp_mapping = {
@@ -8,13 +8,13 @@ const m: sqcp_mapping = {
     ...utm,
     ...owner,
     tenant: { key: 't', type: 'string' },
-    paymentMean: { key: 'p', type: 'string' },
+    paymentMean: { key: 'p', type: 'code' },
     quantity: { key: 'q', type: 'integer' },
     donation: { key: 'd', type: 'integer' },
     custom: { key: 'cd', type: 'string' },
     customSeller: { key: 'sc', type: 'string' },
-    mode: { key: 'm', type: 'string' },
-    locale: { key: 'l', type: 'string' },
+    mode: { key: 'm', type: 'code' },
+    locale: { key: 'l', type: 'locale' },
     game: { key: 'g', type: 'string' },
     sellergroup: { key: 'sg', type: 'string' },
     seller: { key: 's', type: 'string' },
@@ -22,9 +22,9 @@ const m: sqcp_mapping = {
     godfather: { key: 'z', type: 'string' },
     project: { key: 'pr', type: 'string' },
     beneficiary: { key: 'b', type: 'string' },
-    country: { key: 'c', type: 'string' },
+    country: { key: 'c', type: 'country' },
     book: { key: 'k', type: 'string' },
-    bookPublicToken: { key: 'kpt', type: 'string' },
+    bookPublicToken: { key: 'kpt', type: 'publicToken' },
     requestedTicketCustomCodes: { key: 'cc', type: 'string' },
     // registration
     gameName: { key: 'gna', type: 'string' },
@@ -36,31 +36,27 @@ const m: sqcp_mapping = {
     organizationType: { key: 'oty', type: 'string' },
     ticketPriceAmount: { key: 'tpa', type: 'integer' },
     ticketPriceCurrency: { key: 'tpc', type: 'string' },
-    facebookUrl: { key: 'fbu', type: 'string' },
-    websiteUrl: { key: 'wsu', type: 'string' },
-    plannedStartedAt: { key: 'psat', type: 'integer' },
-    plannedDrawnAt: { key: 'pdat', type: 'integer' },
+    facebookUrl: { key: 'fbu', type: 'url' },
+    websiteUrl: { key: 'wsu', type: 'url' },
+    plannedStartedAt: { key: 'psat', type: 'datetime' },
+    plannedDrawnAt: { key: 'pdat', type: 'datetime' },
     gameOptions: { key: 'gopts', type: 'string' },
     saleData: { key: 'sad', type: 'string' },
     supportedLocales: { key: 'slcs', type: 'string' },
     plannedTickets: { key: 'ptk', type: 'integer' },
     plannedCustomTickets: { key: 'pctk', type: 'integer' },
-    logoImage: { key: 'lim', type: 'string' },
-    bannerImage: { key: 'bim', type: 'string' },
-    gimage1Image: { key: 'g1im', type: 'string' },
-    gimage2Image: { key: 'g2im', type: 'string' },
-    gimage3Image: { key: 'g3im', type: 'string' },
-    gimage4Image: { key: 'g4im', type: 'string' },
-    gimage5Image: { key: 'g5im', type: 'string' },
-    gimage6Image: { key: 'g6im', type: 'string' },
-    gimage7Image: { key: 'g7im', type: 'string' },
-    gimage8Image: { key: 'g8im', type: 'string' },
+    logoImage: { key: 'lim', type: 'image' },
+    bannerImage: { key: 'bim', type: 'image' },
+    gimage1Image: { key: 'g1im', type: 'image' },
+    gimage2Image: { key: 'g2im', type: 'image' },
+    gimage3Image: { key: 'g3im', type: 'image' },
+    gimage4Image: { key: 'g4im', type: 'image' },
+    gimage5Image: { key: 'g5im', type: 'image' },
+    gimage6Image: { key: 'g6im', type: 'image' },
+    gimage7Image: { key: 'g7im', type: 'image' },
+    gimage8Image: { key: 'g8im', type: 'image' },
     gamePresentation: { key: 'gpr', type: 'string' },
     organizationPresentation: { key: 'opr', type: 'string' },
-    email: { key: 'em', type: 'string' },
-    phone: { key: 'ph', type: 'string' },
-    firstName: { key: 'fn', type: 'string' },
-    lastName: { key: 'ln', type: 'string' },
 };
 
 export default m;

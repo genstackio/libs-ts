@@ -1,5 +1,6 @@
 import { sqcp_data } from '../types';
 import mappings from '../mappings';
+import unbuildValue from './unbuildValue';
 
 function unpackSqcp(qs: string | undefined, mappingName = 'standard', withExtras = true) {
     // noinspection SuspiciousTypeOfGuard
@@ -31,7 +32,10 @@ function unpackSqcp(qs: string | undefined, mappingName = 'standard', withExtras
                     acc[1][k] = v;
                 }
             } else {
-                acc[0][x.name] = unbuildValue(x.type, v);
+                const vv = unbuildValue(x.type, v);
+                if (undefined !== vv) {
+                    acc[0][x.name] = vv;
+                }
             }
             return acc;
         },
@@ -56,15 +60,4 @@ function unpackSqcp(qs: string | undefined, mappingName = 'standard', withExtras
     return data;
 }
 
-function unbuildValue(type: string, v: string) {
-    v = decodeURIComponent(v);
-    switch (type) {
-        case 'string':
-            return String(v);
-        case 'integer':
-            return parseInt(v);
-        default:
-            return String(v);
-    }
-}
 export default unpackSqcp;

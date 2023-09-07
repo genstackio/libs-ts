@@ -11,6 +11,18 @@ describe('unpackSqcp', function () {
             ['gotombola', 'o=abcd&bla=bli', { owner: 'abcd' }, false],
             [
                 'gotombola',
+                'lim=https://mycompany.com/my/logo.png',
+                { logoImage: { url: 'https://mycompany.com/my/logo.png' } },
+                false,
+            ],
+            [
+                'gotombola',
+                'psat=12345&oe=abcd&e=xyz@email.com',
+                { plannedStartedAt: 12345, email: 'xyz@email.com' },
+                false,
+            ],
+            [
+                'gotombola',
                 'o=abcd&of=Olivier&ol=Brown',
                 { owner: 'abcd', ownerFirstName: 'Olivier', ownerLastName: 'Brown' },
             ],
@@ -39,6 +51,9 @@ describe('packSqcp', function () {
             ['gotombola', { owner: 'abcd', bli: 'Bla' }, 'bli=Bla&o=abcd'],
             ['gotombola', { owner: 'abcd', bli: 'Bla' }, 'o=abcd', false],
             ['gotombola', { owner: 'abcd', ownerLastName: 'MacBrown' }, 'o=abcd&ol=MacBrown'],
+            ['gotombola', { ownerEmail: 'abcd' }, ''],
+            ['gotombola', { ownerEmail: 'abcd@email.com' }, 'oe=abcd%40email.com'],
+            ['gotombola', { plannedStartedAt: 12345 }, 'psat=1970-01-01T00%3A00%3A12.345Z'],
             [
                 'gotombola',
                 { owner: 'abcd', ownerLastName: 'MacBrown', ownerFirstName: 'Phil' },
@@ -56,7 +71,7 @@ describe('packSqcp', function () {
             ],
         ] as [string, sqcp_data, string][]
     ).forEach(([mappingName, data, expected, withExtras = true]: [string, sqcp_data, string, boolean?]) =>
-        it(`${JSON.stringify(expected)} => ${data}`, () => {
+        it(`${JSON.stringify(data)} => ${expected}`, () => {
             expect(packSqcp(data, mappingName, withExtras)).toEqual(expected);
         }),
     );
