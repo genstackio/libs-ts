@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/sqcp",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "Search Query Common Params helper",
     "license": "MIT",
     "main": "lib/index.js",
@@ -24,7 +24,7 @@
         "test": "../../node_modules/.bin/jest -c ../../jest.config.js --rootDir=`pwd`"
     },
     "dependencies": {
-        "@genstackio/validator": "^0"
+        "@genstackio/validator": "^0.1.0"
     },
     "devDependencies": {
         "@babel/core": "^7.18.10",
