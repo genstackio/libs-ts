@@ -8,6 +8,7 @@ describe('objectSwitch', () => {
         [() => 'test1', {}, undefined, undefined, 'test1'],
         [({ a }: any) => (a === 'hello' ? 'world' : 'bye'), { a: 'hello' }, undefined, undefined, 'world'],
         [({ a }: any) => (a === 'hello' ? 'world' : 'bye'), { a: 'not hello' }, undefined, undefined, 'bye'],
+        [{ 'prop1:hello': 'a', 'prop1:world': 'b', '*': 'c' }, { prop1: 'an other value' }, undefined, undefined, 'c'],
         [{ 'prop1:hello': 'a', 'prop1:world': 'b' }, { prop1: 'world' }, undefined, undefined, 'b'],
         [
             { 'prop1:hello': 'a', 'prop1:world': 'b', 'prop3:bla': 'c', 'prop3:bli': 'd' },

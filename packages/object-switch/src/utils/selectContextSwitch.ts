@@ -4,7 +4,7 @@ export function selectContextSwitch(o: Record<string, unknown>, context: any) {
         return context[attr] === val;
     });
 
-    return x?.[1] || undefined;
+    return x?.[1] || o?.['*'] || undefined;
 }
 
 export default selectContextSwitch;
