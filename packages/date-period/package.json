@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/date-period",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Date Period Helper",
     "license": "MIT",
     "main": "lib/index.js",
