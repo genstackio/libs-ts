@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/qso",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Query Search Object model",
     "license": "MIT",
     "main": "lib/index.js",
