@@ -1,6 +1,6 @@
-import parseObjdsl from '../src/utils/parseObjdsl';
+import decode from '../src/utils/decode';
 
-describe('parseObjdsl', () => {
+describe('decode', () => {
     [
         ['', {}],
         ['a=d:e', { a: { d: 'e' } }],
@@ -8,7 +8,7 @@ describe('parseObjdsl', () => {
         ['a=b:c;d:e,f=z:t', { a: { b: 'c', d: 'e' }, f: { z: 't' } }],
     ].forEach(([value, expected]: any) =>
         it(`${value} => ${JSON.stringify(expected)}`, () => {
-            expect(parseObjdsl(value)).toStrictEqual(expected);
+            expect(decode(value)).toStrictEqual(expected);
         }),
     );
 });

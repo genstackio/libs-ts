@@ -1,4 +1,4 @@
-function parseObjdsl(raw: string | undefined) {
+function decode(raw: string | undefined) {
     raw = (raw || '').trim();
     if (!raw.length) return {};
     const modules = raw.split(/\s*,\s*/g);
@@ -14,4 +14,4 @@ function parseObjdsl(raw: string | undefined) {
         return Object.assign(res, { [x[0]]: values });
     }, {});
 }
-export default parseObjdsl;
+export default decode;
