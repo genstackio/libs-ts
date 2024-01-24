@@ -1,9 +1,10 @@
-export function shortenurl(url: unknown) {
+export function shortenurl(url: unknown, domainOnly = false) {
     if (!url || 'string' !== typeof url) return undefined;
-    return url
+    url = url
         .replace(/^https?:\/\//i, '')
         .replace(/^www\./i, '')
         .replace(/\/$/, '');
+    return domainOnly ? (url as string).split('/')[0] : url;
 }
 
 export default shortenurl;
