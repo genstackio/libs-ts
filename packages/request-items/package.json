@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/request-items",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Request Items Helper",
     "license": "MIT",
     "main": "lib/index.js",
