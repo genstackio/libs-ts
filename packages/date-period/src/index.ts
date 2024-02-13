@@ -28,6 +28,37 @@ import {
     addMonths,
 } from 'date-fns';
 
+function startOfHourquarter(now: Date) {
+    const m = now.getMinutes();
+    const d = new Date(now.valueOf());
+    if (m >= 45) {
+        d.setMinutes(45);
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        return d;
+    }
+    if (m >= 30) {
+        d.setMinutes(30);
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        return d;
+    }
+    if (m >= 15) {
+        d.setMinutes(15);
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        return d;
+    }
+    d.setMinutes(0);
+    d.setSeconds(0);
+    d.setMilliseconds(0);
+    return d;
+}
+function subHourquarters(now: Date, n: number) {
+    const d = new Date(now.valueOf());
+    d.setMinutes(d.getMinutes() - n * 15);
+    return d;
+}
 function startOfSemester(now: Date) {
     if (now.getMonth() >= 6) {
         return addMonths(startOfYear(now).getTime(), 6);
@@ -44,6 +75,10 @@ const periods: Record<string, (now: Date) => period> = {
     today: createTodayPeriod,
     since_the_beginning: createSinceTheBeginningPeriod,
     // last xxx
+    last_hourquarter: createLastHourquarterPeriod,
+    last_2hourquarters: createLast2HourquartersPeriod,
+    last_3hourquarters: createLast3HourquartersPeriod,
+    last_4hourquarters: createLast4HourquartersPeriod,
     last_hour: createLastHourPeriod,
     last_2hours: createLast2hoursPeriod,
     last_3hours: createLast3hoursPeriod,
@@ -153,6 +188,18 @@ function createTodayPeriod(now: Date): period {
 function createSinceTheBeginningPeriod(now: Date): period {
     return [0, now.getTime()];
 }
+function createLastHourquarterPeriod(now: Date, startOf = true): period {
+    return createLastXhourquartersPeriod(now, 1, startOf);
+}
+function createLast2HourquartersPeriod(now: Date, startOf = true): period {
+    return createLastXhourquartersPeriod(now, 2, startOf);
+}
+function createLast3HourquartersPeriod(now: Date, startOf = true): period {
+    return createLastXhourquartersPeriod(now, 3, startOf);
+}
+function createLast4HourquartersPeriod(now: Date, startOf = true): period {
+    return createLastXhourquartersPeriod(now, 4, startOf);
+}
 function createLastHourPeriod(now: Date, startOf = true): period {
     return createLastXhoursPeriod(now, 1, startOf);
 }
@@ -200,6 +247,10 @@ function createLast48hoursPeriod(now: Date, startOf = true): period {
 }
 function createLast72hoursPeriod(now: Date, startOf = true): period {
     return createLastXhoursPeriod(now, 72, startOf);
+}
+function createLastXhourquartersPeriod(now: Date, x: number, startOf = true): period {
+    const lend = startOf ? startOfHourquarter(now) : new Date(now.valueOf());
+    return [subHourquarters(lend, x).getTime(), lend.getTime()];
 }
 function createLastXhoursPeriod(now: Date, x: number, startOf = true): period {
     const lend = startOf ? startOfHour(now) : new Date(now.valueOf());
