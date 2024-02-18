@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/filter-object",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Filter Object Helper",
     "license": "MIT",
     "main": "lib/index.js",
