@@ -38,6 +38,14 @@ describe('filterObject', () => {
                 ['abeg*'],
                 { abcd: 42, abegh: true, c: 42, f: 'hello' },
             ],
+            /*
+            [
+                { abcd: { efg: { hi: 42, hj: 'hello' }, exz: 12 }, abef: 'hello', abegh: true, c: 42, f: 'hello' },
+                ['abcd.efg'],
+                [],
+                { abcd: { exz: 12 }, abef: 'hello', abegh: true, c: 42, f: 'hello' },
+            ],
+             */
         ] as [Record<string, unknown>, string[], string[], Record<string, unknown>][]
     ).forEach(([data, excludes, includes, expected]) =>
         it(`${JSON.stringify(data)} / excludes:${JSON.stringify(excludes)} / includes:${JSON.stringify(
