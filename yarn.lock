@@ -2364,6 +2364,11 @@
   dependencies:
     "@octokit/openapi-types" "^16.0.0"
 
+"@ohoareau/array@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@ohoareau/array/-/array-0.1.1.tgz#48f44a1729d7256a54f818e46508021155cf73ee"
+  integrity sha512-fRZeEpPVk6aDe35h8PdD//fFVwe3kcXA8lZzmtWfkQ6tVSeg7Xw6AYcgGZSJL5VJ37oH3dtg4m+M1Yq8XVlLyg==
+
 "@ohoareau/aws-parse@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@ohoareau/aws-parse/-/aws-parse-0.2.0.tgz#3dcaae525dcf2da06d124b32ad8a442f96d3dc5d"
