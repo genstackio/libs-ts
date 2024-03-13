@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/dynpackage",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Dynpackage Helper",
     "license": "MIT",
     "main": "lib/index.js",
@@ -24,9 +24,9 @@
         "test": "../../node_modules/.bin/jest -c ../../jest.config.js --rootDir=`pwd`"
     },
     "dependencies": {
-        "adm-zip": "^0.5.10",
         "@ohoareau/array": "^0.1.1",
-        "@types/adm-zip": "^0.5.5"
+        "@types/adm-zip": "^0.5.5",
+        "adm-zip": "^0.5.10"
     },
     "devDependencies": {
         "@babel/core": "^7.18.10",
