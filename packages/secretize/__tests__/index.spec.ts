@@ -1,5 +1,8 @@
 import secretize, { unsecretize, options } from '../src';
-import { encode, decode } from 'base64-url';
+import base64 from 'base64url';
+
+const decode = base64.decode;
+const encode = base64.encode;
 
 describe('secretize', () => {
     ([
