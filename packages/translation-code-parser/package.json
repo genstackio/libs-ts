@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/translation-code-parser",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Translation Code parser Helper",
     "license": "MIT",
     "main": "lib/index.js",
