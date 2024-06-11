@@ -1,6 +1,6 @@
 import getTranslator from './getTranslator';
 
-export async function translate(text: string, locale: string, sourceLocale = 'en_GB') {
+export async function translate(text: string, locale: string, sourceLocale = 'en_US') {
     sourceLocale = (sourceLocale || '').replace('_', '-');
     const targetLocale = (locale || '').replace('_', '-');
     if (sourceLocale === targetLocale) return text;
