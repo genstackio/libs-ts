@@ -7,5 +7,9 @@ import { bunch, draw, execute_fn, result, ticket } from '../types';
  * max 1 bunch per ticket.
  */
 export default async function (draw: draw, tickets: ticket[], bunches: bunch[], execute: execute_fn): Promise<result> {
-    return execute(draw, tickets, bunches);
+    return execute(
+        draw,
+        tickets.map((x: ticket) => ({ id: x.id })),
+        bunches.map((x: bunch) => ({ id: x.id, nb: x.quantity, ...(x.rankOffset ? { ro: x.rankOffset } : {}) })),
+    );
 }
