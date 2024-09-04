@@ -1,4 +1,4 @@
-import { parseRange } from "..";
+import { parseRange } from '..';
 
 describe('parseRange', () => {
     [
@@ -16,9 +16,8 @@ describe('parseRange', () => {
         ['1-4', [1, 2, 3, 4]],
         ['1-10,21-24,2001,2002', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21, 22, 23, 24, 2001, 2002]],
     ].forEach(([range, expected]: any) => {
-            it(`${range} => ${JSON.stringify(expected)}`, () => {
-                expect(parseRange(range)).toEqual(expected);
-            });
-        }
-    );
+        it(`${range} => ${JSON.stringify(expected)}`, () => {
+            expect(parseRange(range)).toEqual(expected);
+        });
+    });
 });

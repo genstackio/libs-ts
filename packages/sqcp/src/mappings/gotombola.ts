@@ -56,6 +56,8 @@ const m: sqcp_mapping = {
     gimage7Image: { key: 'g7im', type: 'image' },
     gimage8Image: { key: 'g8im', type: 'image' },
     gamePresentation: { key: 'gpr', type: 'string' },
+    templateGameCode: { key: 'tgc', type: 'string' },
+    templateGame: { key: 'tg', type: 'string' },
     organizationPresentation: { key: 'opr', type: 'string' },
 };
 

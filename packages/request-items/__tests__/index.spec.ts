@@ -5,15 +5,7 @@ describe('requestItems', function () {
         [
             [[], undefined, []],
             [[], 3, []],
-            [
-                [
-                    { id: 'bla', units: 1 },
-                ],
-                12,
-                [
-                    { id: 'bla', quantity: 12, product: { id: 'bla', units: 1 } },
-                ],
-            ],
+            [[{ id: 'bla', units: 1 }], 12, [{ id: 'bla', quantity: 12, product: { id: 'bla', units: 1 } }]],
             [
                 [
                     { id: 'blo', units: 1 },
@@ -100,23 +92,14 @@ describe('requestItems', function () {
                     { id: 'pack3', quantity: 1, product: { id: 'pack3', units: 5 } },
                 ],
             ],
-            [
-                [
-                    { id: 'pack1', units: 4 },
-                ],
-                3,
-                [
-                ],
-            ],
+            [[{ id: 'pack1', units: 4 }], 3, []],
             [
                 [
                     { id: 'pack1', units: 1 },
                     { id: 'pack4', units: 11 },
                 ],
                 5,
-                [
-                    { id: 'pack1', quantity: 5, product: { id: 'pack1', units: 1 } },
-                ],
+                [{ id: 'pack1', quantity: 5, product: { id: 'pack1', units: 1 } }],
             ],
             [
                 [
@@ -124,9 +107,7 @@ describe('requestItems', function () {
                     { id: 'pack2', units: 1 },
                 ],
                 5,
-                [
-                    { id: 'pack2', quantity: 5, product: { id: 'pack2', units: 1 } },
-                ],
+                [{ id: 'pack2', quantity: 5, product: { id: 'pack2', units: 1 } }],
             ],
         ] as [any[], number | undefined, any[]][]
     ).forEach(([products, requestedItems, expected]: [any[], number | undefined, any[]]) =>
