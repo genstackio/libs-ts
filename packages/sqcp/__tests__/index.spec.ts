@@ -37,6 +37,11 @@ describe('unpackSqcp', function () {
                 { owner: 'abcd', ownerFirstName: 'Laurent Olivier', ownerLastName: 'Brown' },
             ],
             ['gotombola', 'o=abcd&tgc=GABC123', { owner: 'abcd', templateGameCode: 'GABC123' }],
+            [
+                'gotombola',
+                'o=abcd&tgc=GABC123&tgp=abcdefg',
+                { owner: 'abcd', templateGameProperties: 'abcdefg', templateGameCode: 'GABC123' },
+            ],
         ] as [string, string, sqcp_data, boolean?][]
     ).forEach(([mappingName, raw, expected, withExtras = true]: [string, string, sqcp_data, boolean?]) =>
         it(`${raw} => ${JSON.stringify(expected)}`, () => {
@@ -72,6 +77,11 @@ describe('packSqcp', function () {
             ],
             ['gotombola', { owner: 'abcd', templateGameCode: 'GXYZ987' }, 'o=abcd&tgc=GXYZ987'],
             ['gotombola', { owner: 'abcd', templateGame: 'a1234' }, 'o=abcd&tg=a1234'],
+            [
+                'gotombola',
+                { owner: 'abcd', templateGameProperties: 'pourz', templateGame: 'a1234' },
+                'o=abcd&tg=a1234&tgp=pourz',
+            ],
         ] as [string, sqcp_data, string][]
     ).forEach(([mappingName, data, expected, withExtras = true]: [string, sqcp_data, string, boolean?]) =>
         it(`${JSON.stringify(data)} => ${expected}`, () => {

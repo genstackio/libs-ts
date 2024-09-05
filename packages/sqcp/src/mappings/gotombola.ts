@@ -58,6 +58,7 @@ const m: sqcp_mapping = {
     gamePresentation: { key: 'gpr', type: 'string' },
     templateGameCode: { key: 'tgc', type: 'string' },
     templateGame: { key: 'tg', type: 'string' },
+    templateGameProperties: { key: 'tgp', type: 'string' },
     organizationPresentation: { key: 'opr', type: 'string' },
 };
 
