@@ -55,9 +55,11 @@ export abstract class BaseSdk {
         method = 'GET',
         body: T | undefined = undefined,
         headers: Record<string, string> | undefined = {},
+        options: Record<string, unknown> = {},
     ) {
         const url = `${this.endpoint}${uri}`;
         const initOptions = {
+            ...(options || {}),
             method,
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
