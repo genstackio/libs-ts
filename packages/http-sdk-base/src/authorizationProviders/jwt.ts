@@ -22,10 +22,12 @@ export function factory(
     createAccessToken: () => Promise<tokens>,
     refreshAccessToken: (tokens: tokens) => Promise<tokens>,
     minExpirationDelay = 2,
+    isEnabled?: (tokens: tokens) => Promise<boolean>,
 ) {
     const ctx: tokens = { accessToken: undefined, refreshToken: undefined };
     const setTokens = (tokens: tokens) => (Object.assign as any)(ctx, tokens);
     return async () => {
+        if (isEnabled && !(await isEnabled(ctx))) return undefined;
         if (!isIdentified(ctx)) setTokens(await createAccessToken());
         if (!isAccessTokenValid(ctx, minExpirationDelay)) setTokens(await refreshAccessToken(ctx));
         return `Bearer ${ctx.accessToken}`;
