@@ -1,30 +1,18 @@
 import { Readable } from 'stream';
-import toArray from 'stream-to-array';
-import { renderer, request, response, uploaded_redirect, uploaded_return } from '../types';
-
-const MAX_RETURNABLE_LENGTH = 4500000; // max 4,5Mb
-
-async function stream2buffer(streamOrBuffer: Readable | Buffer) {
-    return streamOrBuffer instanceof Buffer
-        ? streamOrBuffer
-        : Buffer.concat(
-              (await toArray(streamOrBuffer)).reduce((buffers: Uint8Array[], part: unknown) => {
-                  // eslint-disable-next-line
-            buffers.push(part instanceof Buffer ? part : Buffer.from(part as any));
-                  return buffers;
-              }, [] as Buffer[]),
-          );
-}
+import { renderer, descriptor, request, response, uploaded_redirect, uploaded_return } from '../types';
+import stream2buffer from './stream2buffer';
+import sendResult from './sendResult';
 
 export function processRender<T, U extends Readable>(
     rawPayload: T,
-    { contentType, extension, name = 'file' }: { contentType: string; extension: string; name?: string },
+    descriptor: descriptor,
     renderer: renderer<T, U>,
     uploadAndReturnJsonResponse: uploaded_return,
     uploadAndReturnRedirectResponse: uploaded_redirect,
     res: response,
     req: request,
 ) {
+    const { name, extension, contentType, responseMode } = descriptor(req);
     let payload: T | undefined = rawPayload;
     try {
         payload = 'function' === typeof rawPayload ? rawPayload() : rawPayload;
@@ -51,9 +39,9 @@ export function processRender<T, U extends Readable>(
                                 contentType,
                             },
                             { extension, name },
+                            responseMode,
                             uploadAndReturnJsonResponse,
                             uploadAndReturnRedirectResponse,
-                            req,
                             res,
                         )
                             .then(() => {
@@ -71,48 +59,6 @@ export function processRender<T, U extends Readable>(
         .catch((e: Error) => {
             res.status(500).json({ status: 'error', message: e.message });
         });
-}
-
-async function sendResult(
-    result: { length: number; stream: Readable; contentType: string; extraHeaders?: { name: string; value: string }[] },
-    { extension, name }: { extension: string; name: string },
-    uploadAndReturnJsonResponse: uploaded_return,
-    uploadAndReturnRedirectResponse: uploaded_redirect,
-    req: request,
-    res: response,
-) {
-    if (false === req.query.return || 'false' === req.query.return || 0 === req.query.return) {
-        const response = await uploadAndReturnJsonResponse(
-            result.stream,
-            result.length,
-            `${req.params?.file || req.params?.name || name}.${req.params?.ext || extension}`,
-            result.contentType,
-        );
-        res.setHeader('Content-Type', 'application/json;charset=utf-8');
-        res.json(response);
-    } else {
-        if ('true' === req.query.redirect || result?.length > MAX_RETURNABLE_LENGTH) {
-            const response = await uploadAndReturnRedirectResponse(
-                result.stream,
-                result.length,
-                `${req.params?.file || req.params?.name || name}.${req.params?.ext || extension}`,
-                result.contentType,
-            );
-            res.status(response.status || 302);
-            Object.entries(response?.headers || {}).forEach(([k, v]) => {
-                res.setHeader(k, v);
-            });
-            if (response?.body) {
-                res.send(response.body);
-            } else {
-                res.end();
-            }
-            return;
-        }
-        res.setHeader('Content-Type', result.contentType);
-        (result.extraHeaders || []).forEach((h) => res.setHeader(h.name, h.value));
-        result.stream.pipe(res);
-    }
 }
 
 // noinspection JSUnusedGlobalSymbols
