@@ -4,14 +4,16 @@ import { renderer, request, response, uploaded_redirect, uploaded_return } from 
 
 const MAX_RETURNABLE_LENGTH = 4500000; // max 4,5Mb
 
-async function stream2buffer(stream: Readable) {
-    return Buffer.concat(
-        (await toArray(stream)).reduce((buffers: Uint8Array[], part: unknown) => {
-            // eslint-disable-next-line
+async function stream2buffer(streamOrBuffer: Readable | Buffer) {
+    return streamOrBuffer instanceof Buffer
+        ? streamOrBuffer
+        : Buffer.concat(
+              (await toArray(streamOrBuffer)).reduce((buffers: Uint8Array[], part: unknown) => {
+                  // eslint-disable-next-line
             buffers.push(part instanceof Buffer ? part : Buffer.from(part as any));
-            return buffers;
-        }, [] as Buffer[]),
-    );
+                  return buffers;
+              }, [] as Buffer[]),
+          );
 }
 
 export function processRender<T, U extends Readable>(
