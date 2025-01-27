@@ -2,7 +2,7 @@ import { request, response_mode } from '../types';
 import getContentTypeFromExtension from './getContentTypeFromExtension';
 
 export function defaultDescriptor(req: request) {
-    const name = req.params?.file || req.params?.name || 'file';
+    const name = String(req.params?.file || req.params?.name || 'file');
     const extension = (req.params?.ext as string) || '';
     const contentType = getContentTypeFromExtension(extension);
 
