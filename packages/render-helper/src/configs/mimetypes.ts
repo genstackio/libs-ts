@@ -1,4 +1,4 @@
-const mimetypes = {
+const mimetypes: Record<string, string> = {
     '*': 'application/octet-stream',
     avif: 'image/avif',
     bmp: 'image/bmp',
