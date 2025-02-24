@@ -1,5 +1,5 @@
 import mergeResults from '../utils/mergeResults';
-import { bunch, draw, execute_fn, result, ticket } from '../types';
+import { bunch, bunch_mapper_fn, draw, execute_fn, result, ticket, ticket_mapper_fn } from '../types';
 
 /**
  * Applied or no applications Random strategy
@@ -9,7 +9,14 @@ import { bunch, draw, execute_fn, result, ticket } from '../types';
  * bunches, to mix this subset in order to have max 1 ticket per applied bunch and
  * max 1 applied bunch per ticket.
  */
-export default async function (draw: draw, tickets: ticket[], bunches: bunch[], execute: execute_fn): Promise<result> {
+export default async function (
+    draw: draw,
+    tickets: ticket[],
+    bunches: bunch[],
+    execute: execute_fn,
+    ticketMapper?: ticket_mapper_fn,
+    bunchMapper?: bunch_mapper_fn,
+): Promise<result> {
     const { applications, noApplications } = tickets.reduce(
         (acc, t) => {
             if (!t?.appliedBunches?.length) {
@@ -31,12 +38,16 @@ export default async function (draw: draw, tickets: ticket[], bunches: bunch[], 
 
     const { results } = await bunches.reduce(async (acc, b: bunch) => {
         const localAcc = await acc;
+        const bb = { id: b.id, nb: b.quantity, ...(b.rankOffset ? { ro: b.rankOffset } : {}) };
         const r = await execute(
             draw,
             [...(applications[b.id || ''] || []), ...noApplications]
-                .map((x: ticket) => ({ id: x.id }))
+                .map((x: ticket) => {
+                    const z = { id: x.id };
+                    return ticketMapper ? ticketMapper(z, x) : z;
+                })
                 .filter((x) => !localAcc.winningTickets[x.id]),
-            [{ id: b.id, nb: b.quantity, ...(b.rankOffset ? { ro: b.rankOffset } : {}) }],
+            [bunchMapper ? bunchMapper(bb, b) : bb],
         );
         return {
             winningTickets: {

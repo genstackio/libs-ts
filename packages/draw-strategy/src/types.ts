@@ -25,6 +25,12 @@ export type simple_bunch = {
     ro?: number;
 };
 
+export type mapped_bunch = {
+    id: string;
+    nb?: number;
+    ro?: number;
+};
+
 export type ticket = {
     id: string;
     appliedBunches?: string[];
@@ -35,3 +41,12 @@ export type draw = {
 };
 
 export type execute_fn = (draw: draw, tickets: ticket[], bunches: simple_bunch[]) => Promise<result>;
+
+export type mapped_ticket = {
+    id: string;
+    nb?: number;
+    ro?: number;
+};
+
+export type ticket_mapper_fn = (mapped: mapped_ticket, ticket: ticket) => mapped_ticket;
+export type bunch_mapper_fn = (mapped: mapped_bunch, bunch: bunch) => mapped_bunch;

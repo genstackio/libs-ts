@@ -1,4 +1,5 @@
 import processDraw, { result_winner, simple_bunch, draw, ticket } from '../src';
+import { bunch } from '../lib/types';
 
 const execute = async (_: draw, tickets: ticket[], bunches: simple_bunch[]) => {
     const newTickets = [...tickets];
@@ -37,6 +38,22 @@ describe('processDraw(random)', function () {
             id: '',
             createdAt: 0,
             winners: [{ t: 't1', b: 'b1' }],
+        });
+    });
+    it('one ticket one bunch return non-empty result with mapped ticket and bunch', async () => {
+        await expect(
+            processDraw(
+                {},
+                [{ id: 't1', a: 42 } as ticket],
+                [{ id: 'b1', quantity: 1, b: 53 } as bunch],
+                execute,
+                (x) => ({ id: `${x.id}xx` }),
+                (x) => ({ id: `${x.id}yy` }),
+            ),
+        ).resolves.toEqual({
+            id: '',
+            createdAt: 0,
+            winners: [{ t: 't1xx', b: 'b1yy' }],
         });
     });
     it('two tickets one bunch return non-empty result', async () => {
