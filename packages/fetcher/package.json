@@ -21,7 +21,7 @@
     },
     "dependencies": {
         "@genstackio/replace": "^0.2.0",
-        "@ohoareau/aws": "^0.1.8",
+        "@ohoareau/aws": "^0.3.16",
         "node-fetch": "^2.6.5"
     },
     "devDependencies": {

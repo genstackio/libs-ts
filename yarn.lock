@@ -3209,12 +3209,12 @@
   resolved "https://registry.yarnpkg.com/@ohoareau/aws-parse/-/aws-parse-0.2.0.tgz#3dcaae525dcf2da06d124b32ad8a442f96d3dc5d"
   integrity sha512-mIWqp2VM7VcfDk1gEHsHfSGQ5XuJNcP5p5xE9slw/1MMPHDDUpJlJANYf1x2SCsZIAYYDRcYZEF8kpDYnP+tkA==
 
-"@ohoareau/aws@^0.1.8":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@ohoareau/aws/-/aws-0.1.18.tgz#7d4822ebf9152f1f6a1dad51646be38b60dc527b"
-  integrity sha512-Df3k0ZDSEfoLsAUboq4Pg5qo0NiQnvYv1qq+2BSwm/7ZBO29MEcPVruX0N7N3bZG/i1a4I3eriQ9qqW6AwVQvA==
+"@ohoareau/aws@^0.3.16":
+  version "0.3.16"
+  resolved "https://registry.yarnpkg.com/@ohoareau/aws/-/aws-0.3.16.tgz#deda6c287d1c9851978e6ca4e6273604d7a99a36"
+  integrity sha512-bRpK5qbL9Tba4e4p9p6wwq9UgGUF4d7PPFkMFAN2E8BZ47c6vfGxqUgI/GVvJH6SN5QJGGr4CcOg8jdcteT4yQ==
   dependencies:
-    "@ohoareau/errors" "^0.1.0"
+    "@ohoareau/errors" "^0.2.1"
     uuid "^8.3.1"
 
 "@ohoareau/dir2obj@^0.3.1":
@@ -3224,10 +3224,10 @@
   dependencies:
     yaml "^1.10.0"
 
-"@ohoareau/errors@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@ohoareau/errors/-/errors-0.1.0.tgz#dc6646ba6892fa90934c86227d28a8d38414ed1f"
-  integrity sha512-5eeiyHzTScqvxsS3O3cRFYUptsJvGvoFJX4gGFkG+U5T9rjWHE6NePpRzH0V8ieuxkfXtTN5e5qfmRn3fHqy7g==
+"@ohoareau/errors@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@ohoareau/errors/-/errors-0.2.1.tgz#0027fb93e503ad160aedd397c54294fc4f772e21"
+  integrity sha512-vOGmQyRgCLMI3FnAyM+BDg5kZ2V7qth/SYDX++/a5ldp05cJz3yR4tLclRw1WxqXPHMNxDlPLZHyZipXXziu4Q==
 
 "@ohoareau/technologies-detector@^0.3.2":
   version "0.3.2"
