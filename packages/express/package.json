@@ -1,6 +1,6 @@
 {
     "name": "@genstackio/express",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "description": "Express",
     "license": "MIT",
     "main": "lib/index.js",
@@ -26,7 +26,7 @@
     "devDependencies": {
         "@babel/preset-env": "^7.18.10",
         "@babel/preset-typescript": "^7.18.6",
-        "@genstackio/fetcher": "^0.2.0",
+        "@genstackio/fetcher": "^0.3.0",
         "@genstackio/streamer": "^0.2.1",
         "babel-loader": "^8.2.5",
         "source-map-loader": "^4.0.0"
